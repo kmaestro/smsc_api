@@ -1,0 +1,19 @@
+{
+  "name": "maestro/smsc_api",
+  "description": "",
+  "license": "GPL-3.0",
+  "version": "0.1.0",
+  "authors": [
+    {
+      "name": "Maestro",
+      "email": "polishuk1003@gmail.com"
+    }
+  ],
+  "require": {},
+  "require-dev": {},
+  "autoload": {
+    "psr-4": {
+      "Maestro\\SmscApi\\": "src"
+    }
+  }
+}
