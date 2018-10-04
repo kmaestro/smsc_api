@@ -4,14 +4,16 @@ namespace Maestro\SmscApi;
 
 abstract class Smsc
 {
-    protected $login = 'easysms6';
-    protected $password = 'aovmru8s';
+    protected $login;
+    protected $password;
     protected $post = 0;
     protected $https = 0;
     protected $charset = '&charset=windows-1251';
     protected $debug = 0;
     protected $fromEmail = '';
     protected $url;
+    protected $info;
+    protected $cmd = 'send';
     private $query;
     private $time;
     private $sender;
@@ -20,7 +22,8 @@ abstract class Smsc
     private $message;
     private $fmt = '&fmt=2';
     private $files = [];
-    protected $info;
+
+
 
     public function connection($login, $password)
     {
@@ -30,9 +33,15 @@ abstract class Smsc
 
     public function toUrl()
     {
-        return ($this->https ? "https" : "http") . "://smsc.ru/sys/send.php?cost=3&login=" . urlencode($this->login) . "&psw=" . urlencode($this->password)
+        return ($this->https ? "https" : "http") . "://smsc.ru/sys/".$this->cmd.".php?cost=3&login=" . urlencode($this->login) . "&psw=" . urlencode($this->password)
             . $this->message . $this->phone
             . $this->charset . urlencode($this->query) . $this->time . $this->fmt . $this->formats . $this->sender;
+    }
+
+    public function setCmd($cmd)
+    {
+        $this->cmd = $cmd;
+        return $this;
     }
 
     public function setQuery($query)

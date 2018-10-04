@@ -15,4 +15,5 @@ class SmscFormats
     const MAIL = 'mail=1';
     const CALL = 'call=1';
     const VIBER = 'viber=1';
+
 }
