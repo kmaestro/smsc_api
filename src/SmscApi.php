@@ -63,7 +63,7 @@ class SmscApi extends Smsc
 
             if (!$c) {
                 $this->curl = curl_init();
-                $c = $this->curl;
+                $c = &$this->curl;
                 curl_setopt_array(
                     $c, array(
                     CURLOPT_RETURNTRANSFER => true,

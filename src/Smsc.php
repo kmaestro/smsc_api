@@ -2,7 +2,7 @@
 
 namespace Maestro\SmscApi;
 
-abstract class Smsc
+class Smsc
 {
     protected $login;
     protected $password;

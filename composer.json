@@ -9,9 +9,7 @@
       "email": "polishuk1003@gmail.com"
     }
   ],
-  "require": {
-    "squizlabs/php_codesniffer": "3.*"
-  },
+  "require": {},
   "require-dev": {
     "squizlabs/php_codesniffer": "3.*"
   },
