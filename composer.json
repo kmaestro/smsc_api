@@ -2,14 +2,16 @@
   "name": "maestro/smsc_api",
   "description": "",
   "license": "MIT",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "authors": [
     {
       "name": "Maestro",
       "email": "polishuk1003@gmail.com"
     }
   ],
-  "require": {},
+  "require": {
+    "guzzlehttp/guzzle": "^6.3"
+  },
   "require-dev": {
     "squizlabs/php_codesniffer": "3.*"
   },
