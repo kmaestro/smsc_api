@@ -8,10 +8,20 @@ class SmscApi extends Smsc
 
     private $curl;
 
+    /**
+     * @param $phones
+     * @param $message
+     * @param int $time
+     * @param string $format
+     * @param bool $sender
+     * @param string $query
+     * @param array $files
+     * @return bool|mixed|string
+     */
     public function sendSms($phones, $message, $time = 0, $format = SmscFormats::VIBER, $sender = false, $query = "", $files = [])
     {
         $this->setFiles($files);
-        $this->setPhone($phones)->setMessage($message)->setTime($time)->setQuery($query)->setFormats($format)->setSender($sender);
+        $this->setPhone($phones)->setMessage($message)->setValid($time)->setQuery($query)->setFormats($format)->setSender($sender);
 
         $m = $this->smscSendCmd();
 
@@ -25,6 +35,12 @@ class SmscApi extends Smsc
         return $m;
     }
 
+    /**
+     * @param $id
+     * @param $phone
+     * @param int $all
+     * @return bool|mixed|string
+     */
     public function getStatus($id, $phone, $all = 2)
     {
         $this->setCmd('status');
@@ -34,6 +50,10 @@ class SmscApi extends Smsc
         return $m;
     }
 
+    /**
+     * @param null $arg
+     * @return bool|mixed|string
+     */
     private function smscSendCmd($arg = null)
     {
         $files = $this->getFiles();
@@ -53,6 +73,12 @@ class SmscApi extends Smsc
         return $ret;
     }
 
+    /**
+     * @param $url
+     * @param $files
+     * @param int $tm
+     * @return bool|mixed|string
+     */
     private function smscReadUrl($url, $files, $tm = 5)
     {
         $ret = "";
@@ -134,6 +160,9 @@ class SmscApi extends Smsc
         return $ret;
     }
 
+    /**
+     * @return int
+     */
     public function error()
     {
         return curl_errno($this->curl);
