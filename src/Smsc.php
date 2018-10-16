@@ -8,7 +8,7 @@ class Smsc
     protected $password;
     protected $post = 0;
     protected $https = 0;
-    protected $charset = '&charset=windows-1251';
+    protected $charset = '&charset=utf-8';
     protected $debug = 0;
     protected $fromEmail = '';
     protected $url;
@@ -23,6 +23,25 @@ class Smsc
     private $message;
     private $fmt = '&fmt=2';
     private $files = [];
+    private $fileurl;
+
+    /**
+     * @return mixed
+     */
+    public function getFileurl()
+    {
+        return $this->fileurl;
+    }
+
+    /**
+     * @param mixed $fileurl
+     * @return $this;
+     */
+    public function setFileurl($fileurl)
+    {
+        $this->fileurl = ($fileurl ? "&fileurl=" . urlencode($fileurl) : "");;
+        return $this;
+    }
 
 
     /**
@@ -42,7 +61,7 @@ class Smsc
     {
         return ($this->https ? "https" : "http") . "://smsc.ru/sys/" . $this->cmd . ".php?cost=3&login=" . urlencode($this->login) . "&psw=" . urlencode($this->password)
             . $this->message . $this->phone
-            . $this->charset . urlencode($this->query) . $this->time . $this->fmt . $this->formats . $this->sender.$this->valid;
+            . $this->charset . urlencode($this->query) . $this->time . $this->fmt . $this->formats . $this->sender.$this->valid.$this->fileurl;
     }
 
     /**
